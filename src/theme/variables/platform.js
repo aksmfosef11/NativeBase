@@ -2,12 +2,13 @@
 
 import color from 'color';
 import { Platform, Dimensions, PixelRatio } from 'react-native';
-
+import ExtraDimensions from 'react-native-extra-dimensions-android';
 import { PLATFORM } from './commonColor';
 
-const deviceHeight = Dimensions.get('window').height;
-const deviceWidth = Dimensions.get('window').width;
 const platform = Platform.OS;
+const deviceHeight = platform === PLATFORM.IOS ? Dimensions.get('window').height : ExtraDimensions.getRealWindowHeight();
+const deviceWidth = platform === PLATFORM.IOS ? Dimensions.get('window').width : ExtraDimensions.getRealWindowWidth();
+
 const platformStyle = undefined;
 const isIphoneX =
   platform === PLATFORM.IOS &&
